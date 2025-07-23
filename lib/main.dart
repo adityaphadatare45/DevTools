@@ -8,7 +8,8 @@ void main() {
     MultiProvider(
       providers: 
       [
-        ChangeNotifierProvider(create: (_)=>AuthProvider()
+        ChangeNotifierProvider(create: (_)=>AuthProvider(),
+        
         )
       ],
       child: const MyApp(),
