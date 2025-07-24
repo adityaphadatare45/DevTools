@@ -12,29 +12,41 @@ class WelcomeScreen extends StatefulWidget{
  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(26, 26, 26, 100),
-      body: Center(
-         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+      backgroundColor: Colors.black,
+      body: SafeArea(
+        child: Stack(
           children: [
-            const Text(
-              'Welcome\nto\nDevtools',
-              style: TextStyle(
-                fontFamily: 'Jersey20',
-                fontSize: 64,
-                color: Colors.white,
+            const Positioned(
+              top: 24,
+              left: 24,
+              child: Text(
+                'Welcome \n to \nDevtools',
+                style: TextStyle(
+                  fontFamily: 'Jersey20',
+                  fontSize: 52,
+                  color: Colors.white,
+                  letterSpacing: 2,
+                  shadows: [
+                    Shadow(blurRadius: 10,offset: Offset(0,0))
+                  ]
+                ),
+              )
+            ),
+            Center(
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 24),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                   const SizedBox(height: 120,),
+                   
+                  ],
+                ),
               ),
-            ),
-            const SizedBox(height: 40,),
-             
-             Row(
-             children: [
-
-             ],
-            ),
+            )
           ],
-        ),
-      ),
+        )
+      )
     );
   }
 }

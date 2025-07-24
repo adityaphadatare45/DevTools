@@ -73,7 +73,7 @@ class _SplashScreenState extends State<SplashScreen>
                 'DevTools',
                 style: TextStyle(
                   fontFamily: 'Jersey20', // Font must be defined in pubspec.yaml
-                  fontSize: 36,
+                  fontSize: 64,
                   color: Colors.white,
                   letterSpacing: 2,
                   shadows: [
@@ -82,7 +82,7 @@ class _SplashScreenState extends State<SplashScreen>
                 ),
               ),
               const SizedBox(height: 50),
-              const CircularProgressIndicator(color: Colors.white),
+              //const CircularProgressIndicator(color: Colors.white),
             ],
           ),
         ),
