@@ -1,5 +1,5 @@
 import 'package:devtools/Providers/auth_provider.dart';
-import 'package:devtools/UI/splash_screen.dart';
+import 'package:devtools/Screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
