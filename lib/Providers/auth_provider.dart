@@ -4,4 +4,6 @@ class AuthProvider with ChangeNotifier{
   Future<void> logout() async {
     notifyListeners();
   }
+
+  
 }

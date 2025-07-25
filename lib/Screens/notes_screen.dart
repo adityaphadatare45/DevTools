@@ -9,10 +9,6 @@ class NotesScreen extends StatefulWidget{
 }
  class _NotesScreenState extends State<NotesScreen>{
 
-  void _backButton() async{
-   await Provider.of<AuthProvider>(context, listen: false).logout();
-
-  }
 
 
   Widget build(BuildContext context){
@@ -28,11 +24,7 @@ class NotesScreen extends StatefulWidget{
             ],           
            ),
           ),
-          actions: [IconButton(
-            onPressed: _backButton,
-            icon: Icon(Icons.arrow_back)
-          ),
-         ] 
+         
         ),
     );
   }

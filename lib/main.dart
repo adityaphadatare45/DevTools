@@ -1,9 +1,14 @@
 import 'package:devtools/Providers/auth_provider.dart';
 import 'package:devtools/Screens/splash_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  final dir = await getApplicationDocumentsDirectory();
+  // Hive.defaultDirectory = dir.path;
   runApp(
     MultiProvider(
       providers: 
