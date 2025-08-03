@@ -10,7 +10,6 @@ class WelcomeScreen extends StatefulWidget{
 
  class _WelcomescreenState extends State<WelcomeScreen>with TickerProviderStateMixin{
   late final AnimationController _textController;
-  late final Animation<double> _fadeText;
 
   @override
   void initState(){
@@ -20,12 +19,6 @@ class WelcomeScreen extends StatefulWidget{
       duration: const Duration(milliseconds: 500)
     );
 
-   _fadeText = Tween<double>(
-    begin:0,
-    end: 1.5, 
-   ).animate(
-     CurvedAnimation(parent: _textController, curve: Curves.easeIn)
-   );
   }
 
   

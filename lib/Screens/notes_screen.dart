@@ -7,7 +7,6 @@ class NotesScreen extends StatefulWidget{
   State<StatefulWidget> createState()=> _NotesScreenState();
 }
  class _NotesScreenState extends State<NotesScreen>{
-  late final _fontController;
 
 
   @override
