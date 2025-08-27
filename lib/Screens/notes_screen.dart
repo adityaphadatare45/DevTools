@@ -20,7 +20,8 @@ class NotesScreen extends StatefulWidget{
             color: Colors.white,
             shadows: [
               Shadow(offset: Offset(0,0),blurRadius: 10)
-            ],           
+            ], 
+                      
            ),
           ),
          
