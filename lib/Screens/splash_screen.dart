@@ -12,7 +12,6 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
-  late Animation<double> _fadeAnimation;
 
   @override
   void initState() {
@@ -28,7 +27,7 @@ class _SplashScreenState extends State<SplashScreen>
       context,
       PageRouteBuilder(
         transitionDuration: const Duration(milliseconds: 400),
-        pageBuilder: (_, __, ___) => WelcomeScreen(),
+        pageBuilder: (_, __, ___) => const WelcomeScreen(),
         transitionsBuilder: (_, animation, __, child) {
           const begin = Offset(1.0, 0.0);
           const end = Offset.zero;
@@ -42,15 +41,9 @@ class _SplashScreenState extends State<SplashScreen>
 
   void _startAnimations() {
     _controller = AnimationController(
-      duration: const Duration(milliseconds: 1200),
+      duration: const Duration(milliseconds: 1500),
       vsync: this,
-    );
-
-    _fadeAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
-      CurvedAnimation(parent: _controller, curve: Curves.easeIn),
-    );
-
-    _controller.forward();
+    )..forward();
   }
 
   @override
@@ -61,30 +54,56 @@ class _SplashScreenState extends State<SplashScreen>
 
   @override
   Widget build(BuildContext context) {
+    final word = "DevTools";
+
     return Scaffold(
       backgroundColor: Colors.black, // Dark mode
       body: Center(
-        child: FadeTransition(
-          opacity: _fadeAnimation,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const Text(
-                'DevTools',
-                style: TextStyle(
-                  fontFamily: 'Jersey20', // Font must be defined in pubspec.yaml
-                  fontSize: 64,
-                  color: Colors.white,
-                  letterSpacing: 2,
-                  shadows: [
-                    Shadow(blurRadius: 12, offset: Offset(0, 0)),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 50),
-              const CircularProgressIndicator(color: Colors.white),
-            ],
-          ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            // Animate each letter
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: List.generate(word.length, (index) {
+                final animation = CurvedAnimation(
+                  parent: _controller,
+                  curve: Interval(
+                    index / word.length,
+                    (index + 1) / word.length,
+                    curve: Curves.easeOut,
+                  ),
+                );
+
+                return AnimatedBuilder(
+                  animation: animation,
+                  builder: (context, child) {
+                    return Opacity(
+                      opacity: animation.value,
+                      child: Transform.translate(
+                        offset: Offset(0, (1 - animation.value) * 30), // slide up
+                        child: child,
+                      ),
+                    );
+                  },
+                  child: Text(
+                    word[index],
+                    style: const TextStyle(
+                      fontFamily: 'Jersey20',
+                      fontSize: 64,
+                      color: Colors.white,
+                      letterSpacing: 2,
+                      shadows: [
+                        Shadow(blurRadius: 12, offset: Offset(0, 0)),
+                      ],
+                    ),
+                  ),
+                );
+              }),
+            ),
+            const SizedBox(height: 50),
+            const CircularProgressIndicator(color: Colors.white),
+          ],
         ),
       ),
     );
